@@ -15,6 +15,7 @@ This repository contains a complete face recognition system that:
 
 ### Setup
 # Clone repository
+'''bash
 git clone https://github.com/vidhi-sys/face-recognition-model.git
 cd face-recognition-model
 
