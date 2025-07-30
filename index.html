@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe-Level Face Recognition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007bff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.38 0 2.5 1.12 2.5 2.5S13.38 10 12 10 9.5 8.88 9.5 7.5 10.62 5 12 5zm0 14.5c-2.49 0-4.7-1.39-5.83-3.5H17.83c-1.13 2.11-3.34 3.5-5.83 3.5zM6.5 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm11 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E" type="image/svg+xml">
+
+</head>
+<body>
+    <div class="container">
+        <h1>FaceVista AI</h1>
+        <p class="tagline">Intelligent Face Recognition for Gender Identification</p>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <p class="text-center">Upload an image to unlock insights:</p>
+            <div class="file-input-container">
+                <input type="file" name="file" id="fileInput" accept="image/*" required onchange="updateFileName()">
+                <label for="fileInput" class="file-input-button">Choose Image</label>
+            </div>
+            <span id="fileNameDisplay" class="file-name-display">No file chosen</span>
+            <br>
+            <input type="submit" value="Analyze Image">
+        </form>
+
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+
+        <div class="example-images-section">
+            <h2>Or Try with Our Examples:</h2>
+            <div class="example-thumbnails">
+                {% for example_image in example_images %}
+                <a href="{{ url_for('process_example_image', filename=example_image) }}" class="example-thumbnail-link">
+                    <img src="{{ url_for('static', filename='uploads/' + example_image) }}" alt="Example {{ loop.index }}" class="example-thumbnail">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if uploaded_image %}
+            <div class="image-display">
+                <h2>Analysis for: <span style="color: #6a11cb;">{{ original_filename }}</span></h2>
+                <img src="{{ uploaded_image }}" alt="Processed Image">
+            </div>
+
+            {% if predictions %}
+                <div class="predictions">
+                    <h2>Analysis Results:</h2>
+                    {% for prediction in predictions %}
+                        <div class="prediction-item">
+                            <p><strong>Detected Face {{ loop.index }}:</strong></p>
+                            <p>Gender Prediction: <strong><span style="color: {{ 'blue' if prediction.gender == 'male' else 'hotpink' }};">{{ prediction.gender | capitalize }}</span></strong></p>
+                            <p>Confidence Score: {{ "%.2f" | format(prediction.prob_score * 100) }}%</p>
+                            </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="info-message">No faces detected in the uploaded image. Please try another image.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('fileInput');
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = 'No file chosen';
+            }
+        }
+    </script>
+</body>
+</html>

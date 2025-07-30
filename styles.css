@@ -1,0 +1,289 @@
+/* General Body and Container */
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e0e5ec 100%); /* Light gradient background */
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    width: 95%;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+    margin: 20px 0; /* Add vertical margin for smaller screens */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+h1 {
+    font-size: 2.8em;
+    color: #007bff; /* Primary vibrant blue */
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+}
+
+p.tagline {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Upload Form */
+form {
+    background-color: #f7f9fc;
+    border: 2px dashed #a0c4ff; /* Lighter blue dashed border */
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+form:hover {
+    border-color: #007bff;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+}
+
+.file-input-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.file-input-button {
+    background-color: #6a11cb; /* Vibrant purple */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(106, 17, 203, 0.3);
+}
+
+.file-input-button:hover {
+    background-color: #5a0eb0;
+    transform: translateY(-2px);
+}
+
+input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.file-name-display {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+    min-height: 20px; /* Prevent layout shift */
+}
+
+input[type="submit"] {
+    background-color: #28a745; /* Vibrant green */
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Messages */
+.error-message {
+    color: #dc3545; /* Red */
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 25px;
+    font-weight: 500;
+    animation: slideIn 0.5s ease-out;
+}
+
+.info-message {
+    color: #0056b3;
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 25px;
+    font-weight: 500;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Example Images Section */
+.example-images-section {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.example-images-section h2 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.example-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Space between thumbnails */
+    padding: 10px;
+    background-color: #f7f9fc;
+    border-radius: 8px;
+    border: 1px solid #e0e5ec;
+}
+
+.example-thumbnail-link {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.example-thumbnail-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.example-thumbnail {
+    width: 100px; /* Fixed size for thumbnails */
+    height: 100px; /* Fixed size for thumbnails */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 8px; /* Match link border-radius */
+    border: 3px solid transparent; /* Placeholder for hover effect */
+    transition: border-color 0.2s ease;
+}
+
+.example-thumbnail-link:hover .example-thumbnail {
+    border-color: #007bff; /* Vibrant border on hover */
+}
+
+
+/* Image Display */
+.image-display {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.image-display h2 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.image-display img {
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #007bff; /* Vibrant border for the image */
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 123, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-display img:hover {
+    transform: scale(1.02);
+}
+
+/* Predictions Section */
+.predictions {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    text-align: left; /* Align text within prediction items */
+}
+
+.predictions h2 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.prediction-item {
+    background-color: #e9f5ff; /* Light blue background for items */
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    border-left: 5px solid #6a11cb; /* Purple left border */
+}
+
+.prediction-item:hover {
+    transform: translateY(-5px);
+}
+
+.prediction-item p {
+    margin: 5px 0;
+    font-size: 1.05em;
+    color: #444;
+}
+
+.prediction-item strong {
+    color: #333;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .file-input-button, input[type="submit"] {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .example-thumbnail {
+        width: 80px; /* Slightly smaller thumbnails on mobile */
+        height: 80px;
+    }
+}
